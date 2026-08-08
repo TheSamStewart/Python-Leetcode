@@ -1,7 +1,9 @@
+from functools import cache
+
 class Solution:
     def climbStairs(self, n: int) -> int:
 
-        completed = dict()
+        @cache
 
         def climb(i):
 
@@ -13,11 +15,7 @@ class Solution:
 
                 return 0
 
-            if i not in completed:
-
-                completed[i] = climb(i+1) + climb(i+2)
-
-            return completed[i]
+            return climb(i+1) + climb(i+2)
 
         return climb(0)
 
